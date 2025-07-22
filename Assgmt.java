@@ -768,3 +768,319 @@ class problem28 {
         scan.close();
   }
 }
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+class problem29 {
+
+    static void inputMatrix(int[][] A, int m, int n, Scanner scanner) {
+        System.out.println("Enter elements of the matrix (" + m + " x " + n + "):");
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                A[i][j] = scanner.nextInt();
+            }
+        }
+    }
+
+    static void displayMatrix(int[][] A, int m, int n) {
+        System.out.println("Matrix:");
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+            System.out.print(A[i][j] + "\t");
+            }
+            System.out.println();
+        }
+    }
+
+    static void totalSum(int[][] A, int m, int n) {
+        int sum = 0;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                sum += A[i][j];
+            }
+        }
+        System.out.println("Sum of all elements: " + sum);
+    }
+
+    static void rowWiseSum(int[][] A, int m, int n) {
+        System.out.println("Row-wise sum:");
+        for (int i = 0; i < m; i++) {
+            int rowSum = 0;
+           for (int j = 0; j < n; j++) {
+                rowSum += A[i][j];
+            }
+            System.out.println("Row " + (i + 1) + ": " + rowSum);
+        }
+    }
+    static void columnWiseSum(int[][] A, int m, int n) {
+        System.out.println("Column-wise sum:");
+        for (int j = 0; j < n; j++) {
+             int colSum = 0;
+            for (int i = 0; i < m; i++) {
+                 colSum += A[i][j];
+            }
+            System.out.println("Column " + (j + 1) + ": " + colSum);
+        }
+    }
+
+    // Method to display transpose (n × m)
+    static void transposeMatrix(int[][] A, int m, int n) {
+        System.out.println("Transpose (" + n + " x " + m + "):");
+        for (int j = 0; j < n; j++) {
+            for (int i = 0; i < m; i++) {
+                System.out.print(A[i][j] + "\t");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter number of rows (m): ");
+        int m = scanner.nextInt();
+        System.out.print("Enter number of columns (n): ");
+        int n = scanner.nextInt();
+
+        int[][] A = new int[m][n];
+        int choice;
+
+        do {
+            System.out.println("MENU:");
+            System.out.println("1. Input Matrix");
+            System.out.println("2. Display Matrix");
+            System.out.println("3. Sum of All Elements");
+            System.out.println("4. Row-wise Sum");
+            System.out.println("5. Column-wise Sum");
+            System.out.println("6. Transpose Matrix");
+            System.out.println("7. Exit");
+            System.out.print("Enter your choice: ");
+            choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1: inputMatrix(A, m, n, scanner); break;
+                case 2: displayMatrix(A, m, n); break;
+                case 3: totalSum(A, m, n); break;
+                case 4: rowWiseSum(A, m, n); break;
+                case 5: columnWiseSum(A, m, n); break;
+                case 6: transposeMatrix(A, m, n); break;
+                case 7: System.out.println("Exiting program."); break;
+                default: System.out.println("Invalid choice! Try again.");
+            }
+        } while (choice != 7);
+
+        scanner.close();
+    }
+}
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+class problem30 {  // Part-3
+
+  public static String sumBinary (String a, String b){
+     int i = a.length()-1;
+     int j = b.length()-1;
+      int carry = 0;
+      int max = Math.max(a.length(), b.length())+1;
+      char[] res = new char[max];
+      int k = max - 1;
+      while( i >= 0 || j >= 0|| carry >0){
+
+       int A = (i >= 0) ? a.charAt(i--) - '0': 0;
+       int B = (j >= 0) ? b.charAt(j--) - '0': 0;
+       int sum = A + B + carry;
+       res[k--] = (char)((sum%2 )+'0');
+       carry = sum /2;
+      }
+  return new String (res, k+1, max-k-1);
+  }
+
+  public static void main (String [] args){
+     System.out.println(sumBinary("11", "1"));
+     System.out.println(sumBinary("1010", "1011"));
+  }
+}
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+class problem31{
+
+  public static String columnTitle(int n ){
+    String s = "";
+   while(n >0){
+     n--;
+     char ch = (char) ('A' + (n %26));
+     s = ch + s;
+     n /= 26;
+   }
+  return s;
+  }
+  public static void main(String [] args){
+    System.out.println(columnTitle(18));
+    System.out.println(columnTitle(25));
+   System.out.println(columnTitle(28)); 
+    System.out.println(columnTitle(306));
+  }
+}
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+class problem32 {
+ public static String revVowels(String s){
+   char[] ch =  s.toCharArray();
+   int st =0, e = s.length()-1;
+   while( st < e){
+    if(!vowel(ch[st])){
+      st++;
+    }
+   else if(!vowel(ch[e])){
+      e--;
+    }
+   else{
+     char temp = ch[st];
+     ch[st] = ch[e];
+     ch[e] = temp;
+     st++;
+     e--;
+    }
+   }
+   return String.valueOf(ch);
+ }
+  public static boolean vowel(char ch){
+     return "aeiouAEIOU".indexOf(ch) != -1;
+  }
+ public static void main (String[]args){
+   Scanner scan = new Scanner (System.in);
+   String s = scan.next();
+   System.out.println(revVowels(s));
+ }
+}
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+class problem33 {
+  
+  public static String moreLetter(String s, String t){
+     int sumS = 0;
+        int sumT = 0;
+
+        for (int i = 0; i < s.length(); i++) {
+            sumS += s.charAt(i);
+        }
+
+        for (int i = 0; i < t.length(); i++) {
+            sumT += t.charAt(i);
+        }
+
+        char extraChar = (char)(sumT - sumS);
+        return String.valueOf(extraChar);
+ 
+  }
+  public static void main (String[]args){
+    Scanner scan = new Scanner (System.in);
+    String s = scan.next();
+    String t = scan.next();
+     System.out.println(moreLetter(s,t));
+  }
+}
+
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+class problem34 {
+
+  public static String subSequence( String s, String t){
+    int i=0, j=0;
+    while(i < s.length() && j < t.length()){
+
+       if(s.charAt(i)== t.charAt(j)){
+         i++;
+       }
+       j++;
+    }
+return (i == s.length()) ? "true" : "false";
+  } 
+
+  public static void main (String[]args){
+    Scanner scan = new Scanner (System.in);
+    String s = scan.next();
+    String t = scan.next();
+    System.out.println(subSequence(s,t));
+  }
+}
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+class problem35 {
+
+ public static String addString(String n, String m){
+    int i = n.length() - 1;
+    int j = m.length() -1;
+    int carry = 0;
+    StringBuilder res = new StringBuilder();
+    
+     while(i>=0 || j >=0 || carry >0){
+        int dig1 = (i>=0) ? n.charAt(i--) - '0' : 0;
+        int dig2 = (j>=0) ? m.charAt(j--) - '0' : 0;
+
+     int sum = dig1 + dig2 + carry;
+      res.append(sum%10);
+      carry = sum/10;
+     }
+   return res.reverse().toString();
+ }
+ 
+ public static void main (String [] args){
+   System.out.println(addString("11","123"));
+   System.out.println(addString("456","1"));
+ }
+
+}
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+class problem36 {
+
+ public static int countWords(String s){
+   int count = 0;
+   boolean noSpace = false;
+
+   for(int i=0; i < s.length(); i++){
+     if(s.charAt(i) != ' '){
+        if(!noSpace){
+         count++;
+         noSpace = true;
+        }
+     }else{
+       noSpace = false;
+      }
+   }
+  return count;
+ }
+ 
+ public static void main (String[]args){
+   System.out.println(countWords("Hello, my name is John"));
+   System.out.println(countWords("Hello"));
+   System.out.println(countWords("Word with space"));
+ }
+}
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+class problem37 {
+ 
+ public static boolean checkCapital(String word){
+   if (word.equals(word.toUpperCase())) return true;       
+        if (word.equals(word.toLowerCase())) return true;       
+        if (Character.isUpperCase(word.charAt(0)) && word.substring(1).equals(word.substring(1).toLowerCase())) {
+            return true;                                      
+        }
+        return false;
+ }
+  
+ public static void main (String [] args){
+   System.out.println(checkCapital("USA"));
+   System.out.println(checkCapital("FlaG"));
+   System.out.println(checkCapital("leetcode"));
+ }
+}
