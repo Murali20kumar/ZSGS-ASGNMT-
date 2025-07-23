@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Assgmt { // Problem 1
+ class Assgmt { // Problem 1
   
   static char staticvar = 'M';
 
@@ -240,55 +240,35 @@ class problem11 {
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-class Problem12 {  // X pattern
+class problem12 {
 
-    public static void main(String[] args) {
-        int n = 5; 
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                if (j == i || j == n - i - 1) {
-                    System.out.print("1");
-                } else {
-                    System.out.print(" ");
-                }
+  public static void main (String [] args){
+    int[][] pattern = {
+            {2, 4},
+            {2, 2},
+            {1, 4},
+            {2, 2},
+            {2, 2}
+        };
+
+        for (int i = 0; i < pattern.length; i++) {
+            int ones = pattern[i][0];
+            int rs = pattern[i][1];
+
+            
+            for (int j = 0; j < ones; j++) {
+                System.out.print("1 ");
             }
-            System.out.println();
-        }
-    }
-}
 
-//------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-class RPattern {
-    public static void main(String[] args) {
-        int n = 7;
-
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                if (j == 0) {
-                    System.out.print("R");
-                }
-                else if (i == 0 && j < n - 1) {
-                    System.out.print("R");
-                }
-                else if (i == n / 2 && j < n - 1) {
-                    System.out.print("R");
-                }
-                else if (j == n - 1 && i > 0 && i < n / 2) {
-                    System.out.print("R");
-                }
-                else if (i - j == n / 2) {
-                    System.out.print("R");
-                }
-                else {
-                    System.out.print(" ");
-                }
+           
+            for (int j = 0; j < rs; j++) {
+                System.out.print("R ");
             }
-            System.out.println();
-        }
-    }
-}
 
+            System.out.println();         }
+
+  }
+}
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1250,7 +1230,7 @@ class Vehicle {
 }
 
 
-public class Main { //(Assume that I have created this file and running as a separate file with one public class)
+public class Main {
  
   public static void main(String[]args){
     Vehicle v1 = new Vehicle("BMW",300000);
@@ -1268,117 +1248,3 @@ public class Main { //(Assume that I have created this file and running as a sep
 }
 
 //------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-class Employee1{ //Already created a class with name-  Employee 
-
-    String name;
-    int yoJoining;
-    double salary;
-    String address;
-
-    Employee( String name,int yoJoining,double salary,String address){
-      this.name = name;
-      this.yoJoining = yoJoining;
-      this.salary = salary;
-      this.address = address;
-    }
-   
-    String getInfo(){
-      return String.format("%-10s %15d %s", name, yoJoining, address);
-    }
-
-}
-
-public class main { //Assuming this is the only main class in this file
-
-  public static void main (String[]args){
-  
-   Employee1 = new Employee1("Dorian", 1992, 55000.00, "46D-Birmingham,Uk"); 
-   Employee1 = new Employee1("Ronnie", 1998, 60000.00, "46D-Birmingham,Uk"); 
-   Employee1 = new Employee1("Ronnie", 1975, 45000.00, "46D-Birmingham,Uk"); 
-
-   System.out.println("Name       Year of joining   Address");
-
-     System.out.println(e1.getInfo());
-     System.out.println(e2.getInfo());
-     System.out.println(e3.getInfo());
-  }
-
-}
-
-//------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-class Store { //store class
-  
- private static String storeName;
- private static String storeLocation;
- private List<Product> newproduct;
- private Store(){
-     newproduct = new ArrayList<>();
-  ]
-
- public static void storeDetails(String name, String location){
-   storeName = name;
-   storeLocation = location;
- }
- 
- public static void showDetails(){
-   System.out.println("Store Name    : " + storeName);
-   System.out.println("Store Location: " + storeLocation);
-   System.out.println("-----------------------------------");
- }
-
-  public void addProduct(Product product) {
-        newproduct.add(product);
-  }
-
-   public void displayAllProducts() {
-        System.out.println("Product Inventory:");
-        for (Product p : newproduct) {
-            p.displayProduct();
-        }
-   }
-
-  
-}
-
-class Product{  //Product class
-  private int productId;
-  private String name;
-  private double price;
-  private int quantity;
-  
-  public Product(int productId, String name, double price,int quantity){
-    this.productId = productId;
-    this.name = name;
-    this.price = price;
-    this.quantity = quantity;
-  }
-
- public void displayProduct(){
-  System.out.println("ID: %-5d Name: %-15s Price: ₹%-10.2f Quantity: %-5d%n",productId, name, price, quantity);
-
- }
-
-}
-
-public class Main { //Assuming this is the main class in this file.
- 
-  public static void main(String []args){
-     Store.details("MonsterDeviceFactory","Tirunelveli");
-
-     Store myStore = new Store();
-     
-     Product p1 = new Product(101, "Gaming Laptop", 75000.00, 5);
-     Product p2 = new Product(102, "Sony Earbuds" , 5000.00, 50);
-     Product p3 = new Product(103, "ROG Ally", 45000.00, 30);
-
-    myStore.addProduct(p1);
-    myStore.addProduct(p2);
-    myStore.addProduct(p3);
-
-  Store.showDetails();
-  myStore.displayAllProducts();
-   
- }
-}
